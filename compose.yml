@@ -28,7 +28,7 @@ services:
   borrow_service:
     image: nehapyla/docker:borrowimage
     ports:
-      - "5001:5001"
+      - "5003:5003"
     deploy:
       replicas: 1
     depends_on:
