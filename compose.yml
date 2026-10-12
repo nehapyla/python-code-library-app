@@ -1,42 +1,47 @@
+
 ---
 services:
-db:
-  image: nehapyla/docker:dbimage
-  ports:
-   - "3306:3306"
-  deploy:
-    replicas: 1
-auth_service:
-  image: nehapyla/docker:authimage
-  ports:
-   - "5001:5001"
-  deploy:
-    replicas: 1
-  depends_on:
-    - db
-book_service:
-  image: nehapyla/docker:bookimage
-  ports:
-   - "5002:5002"
-  deploy:
-    replicas: 1
-  depends_on:
-    - db
-borrow_service:
-  image: nehapyla/docker:borrowimage
-  ports:
-   - "5001:5001"
-  deploy:
-    replicas: 1
-  depends_on:
-    - db
-app_service:
-  image: nehapyla/docker:appimage
-  ports:
-   - "5000:5000"
-  deploy:
-    replicas: 1
-  depends_on:
-    - auth_service
-    - book_service
-    - borrow_service
+  db:
+    image: nehapyla/docker:dbimage
+    ports:
+      - "3306:3306"
+    deploy:
+      replicas: 1
+
+  auth_service:
+    image: nehapyla/docker:authimage
+    ports:
+      - "5001:5001"
+    deploy:
+      replicas: 1
+    depends_on:
+      - db
+
+  book_service:
+    image: nehapyla/docker:bookimage
+    ports:
+      - "5002:5002"
+    deploy:
+      replicas: 1
+    depends_on:
+      - db
+
+  borrow_service:
+    image: nehapyla/docker:borrowimage
+    ports:
+      - "5001:5001"
+    deploy:
+      replicas: 1
+    depends_on:
+      - db
+
+  app_service:
+    image: nehapyla/docker:appimage
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 1
+    depends_on:
+      - auth_service
+      - book_service
+      - borrow_service
